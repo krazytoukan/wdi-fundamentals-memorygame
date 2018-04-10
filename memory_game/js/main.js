@@ -1,21 +1,35 @@
 
-//Unit 8 Assignment
-
 var cards = ["queen", "queen", "king", "king"];
 var cardsInPlay = [];
-var cardOne = cards[0];
-cardsInPlay.push(cardOne);
-console.log("User flipped queen.");
 
-var cardTwo = cards[2];
-cardsInPlay.push(cardTwo);
-console.log("User flipped king.");
+var checkForMatch = function() {
+	if (cardsInPlay.length === 2 && cardsInPlay[0] === cardsInPlay[1]) {
+		console.log("You've found a Match!");
+	} else if (cardsInPlay.length === 1) {
+		return ;
+	} else {
+		console.log("You have failed miserably.");
+	}
 
-if (cardsInPlay.length === 2) {
-	if (cardsInPlay[0] === cardsInPlay[1]) {
-		alert("You've found a Match!");
-	}
-	else {
-		alert("You have failed miserably.");
-	}
 }
+
+var flipCard = function(cardId){
+	console.log("Player flipped " + cards[cardId] + ".");
+	cardsInPlay.push(cards[cardId]);
+	checkForMatch();
+}
+flipCard(0);
+flipCard(2);
+
+
+
+
+
+
+
+
+
+
+//Assignment 8 check to see if it works
+
+

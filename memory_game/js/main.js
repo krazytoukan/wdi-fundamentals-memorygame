@@ -1,4 +1,3 @@
-
 var cards = [
 	{
 		rank: "queen",
@@ -24,26 +23,56 @@ var cards = [
 
 var cardsInPlay = [];
 
+//CheckforMatch Logic
+
 var checkForMatch = function() {
-	if (cardsInPlay.length === 2 && cardsInPlay[0] === cardsInPlay[1]) {
-		console.log("You've found a Match!");
-	} else if (cardsInPlay.length === 1) {
-		return ;
+	if (cardsInPlay[0].rank === cardsInPlay[1].rank) {
+		alert("You've found a Match DON!");
 	} else {
-		console.log("You have failed miserably.");
+		alert("You have failed miserably.");
 	}
 };
 
-var flipCard = function(cardId){
-	console.log("Player flipped " + cards[cardId].rank + ".");
-	cardsInPlay.push(cards[cardId].rank);
-	console.log(cards[cardId].suit);
-	console.log(cards[cardId].cardImage);
-	checkForMatch();
+//flipCard Logic
+
+var flipCard = function() {
+	var cardId = this.getAttribute('data-id');
+	cardsInPlay.push(cards[cardId]);
+	this.setAttribute('src', cards[cardId].cardImage);
+	if (cardsInPlay.length === 2) {
+		checkForMatch();
+	}
 };
 
-flipCard(0);
-flipCard(3);
+//Game Board logic
+
+var createBoard = function() {
+	for (var i = 0; i < cards.length; i++) {
+		var cardElement = document.createElement('img');
+		cardElement.setAttribute('src', 'images/back.png');
+		cardElement.setAttribute('data-id', i);
+		cardElement.addEventListener('click', flipCard);
+		document.getElementById('game-board').appendChild(cardElement);
+	}
+}
+
+
+createBoard();
+
+//Reset Button Logic
+/*
+var boardReset = function(){
+	cardsInPlay = undefined;
+	cardElement[1].setAttribute('src', 'images/back.png');
+	cardElement[2].setAttribute('src', 'images/back.png');
+	cardElement[3].setAttribute('src', 'images/back.png');
+	cardElement[4].setAttribute('src', 'images/back.png');
+	alert ('Game Reset!');
+}
+
+var reset = document.querySelector('button');
+reset.addEventListener ('click', boardReset);
+*/
 
 
 
@@ -54,6 +83,5 @@ flipCard(3);
 
 
 
-//Assignment 8 check to see if it works
 
 

@@ -27,7 +27,7 @@ var cardsInPlay = [];
 
 var checkForMatch = function() {
 	if (cardsInPlay[0].rank === cardsInPlay[1].rank) {
-		alert("You've found a Match DON!");
+		alert("You've found a Match!");
 	} else {
 		alert("You have failed miserably.");
 	}
